@@ -86,7 +86,7 @@ export class MeweProvider extends SocialAbstract implements SocialProvider {
         `${this.meweHost}/login` +
         `?client_id=${process.env.MEWE_APP_ID}` +
         `&redirect_uri=${encodeURIComponent(
-          `${process.env.FRONTEND_URL}/integrations/social/mewe`
+          `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/mewe`
         )}` +
         `&state=${state}`,
       codeVerifier: makeSecureId(10),

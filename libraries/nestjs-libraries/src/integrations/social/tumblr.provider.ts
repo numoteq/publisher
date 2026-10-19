@@ -404,7 +404,7 @@ export class TumblrProvider extends SocialAbstract implements SocialProvider {
   }
 
   private redirectUri() {
-    return `${process.env.FRONTEND_URL}/integrations/social/tumblr`;
+    return `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/tumblr`;
   }
 
   private getAvatarUrl(blogName: string) {
@@ -423,7 +423,7 @@ export class TumblrProvider extends SocialAbstract implements SocialProvider {
 
   private getMediaUrl(path: string) {
     return path?.indexOf('http') === -1
-      ? `${process.env.FRONTEND_URL}/${path}`
+      ? `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/${path}`
       : path;
   }
 

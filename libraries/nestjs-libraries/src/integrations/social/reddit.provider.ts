@@ -131,7 +131,7 @@ export class RedditProvider extends SocialAbstract implements SocialProvider {
     const url = `https://www.reddit.com/api/v1/authorize?client_id=${
       process.env.REDDIT_CLIENT_ID
     }&response_type=code&state=${state}&redirect_uri=${encodeURIComponent(
-      `${process.env.FRONTEND_URL}/integrations/social/reddit`
+      `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/reddit`
     )}&duration=permanent&scope=${encodeURIComponent(this.scopes.join(' '))}`;
     return {
       url,
@@ -158,7 +158,7 @@ export class RedditProvider extends SocialAbstract implements SocialProvider {
         body: new URLSearchParams({
           grant_type: 'authorization_code',
           code: params.code,
-          redirect_uri: `${process.env.FRONTEND_URL}/integrations/social/reddit`,
+          redirect_uri: `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/reddit`,
         }),
       })
     ).json();

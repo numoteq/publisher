@@ -93,7 +93,7 @@ export class FacebookProvider extends SocialAbstract implements SocialProvider {
       return {
         type: 'refresh-token' as const,
         value:
-          'Postiz is not authorized to publish as this page, please reconnect the channel',
+          'NUMOTEQ Publisher is not authorized to publish as this page, please reconnect the channel',
       };
     }
 
@@ -305,7 +305,7 @@ export class FacebookProvider extends SocialAbstract implements SocialProvider {
         `https://www.facebook.com/${META_GRAPH_API_VERSION}/dialog/oauth` +
         `?client_id=${process.env.FACEBOOK_APP_ID}` +
         `&redirect_uri=${encodeURIComponent(
-          `${process.env.FRONTEND_URL}/integrations/social/facebook`
+          `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/facebook`
         )}` +
         `&state=${state}` +
         `&scope=${this.scopes.join(',')}`,
@@ -342,7 +342,7 @@ export class FacebookProvider extends SocialAbstract implements SocialProvider {
         `https://graph.facebook.com/${META_GRAPH_API_VERSION}/oauth/access_token` +
           `?client_id=${process.env.FACEBOOK_APP_ID}` +
           `&redirect_uri=${encodeURIComponent(
-            `${process.env.FRONTEND_URL}/integrations/social/facebook${
+            `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/facebook${
               params.refresh ? `?refresh=${params.refresh}` : ''
             }`
           )}` +

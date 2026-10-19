@@ -57,7 +57,7 @@ export class TwitchProvider extends SocialAbstract implements SocialProvider {
   async generateAuthUrl() {
     const state = makeSecureId(32);
 
-    const redirectUri = `${process.env.FRONTEND_URL}/integrations/social/twitch`;
+    const redirectUri = `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/twitch`;
 
     const url =
       `https://id.twitch.tv/oauth2/authorize` +
@@ -79,7 +79,7 @@ export class TwitchProvider extends SocialAbstract implements SocialProvider {
     codeVerifier: string;
     refresh?: string;
   }) {
-    const redirectUri = `${process.env.FRONTEND_URL}/integrations/social/twitch${
+    const redirectUri = `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/twitch${
       params.refresh ? `?refresh=${params.refresh}` : ''
     }`;
 

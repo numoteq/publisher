@@ -17,13 +17,13 @@ export class MastodonCustomProvider extends MastodonProvider {
 
   async externalUrl(url: string) {
     const form = new FormData();
-    form.append('client_name', 'Postiz');
+    form.append('client_name', 'NUMOTEQ Publisher');
     form.append(
       'redirect_uris',
-      `${process.env.FRONTEND_URL}/integrations/social/mastodon`
+      `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/mastodon`
     );
     form.append('scopes', this.scopes.join(' '));
-    form.append('website', process.env.FRONTEND_URL!);
+    form.append('website', (process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)!);
     const { client_id, client_secret, ...all } = await (
       await fetch(url + '/api/v1/apps', {
         method: 'POST',
@@ -47,7 +47,7 @@ export class MastodonCustomProvider extends MastodonProvider {
       external?.instanceUrl!,
       state,
       external?.client_id!,
-      process.env.FRONTEND_URL!,
+      (process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)!,
       refresh
     );
 

@@ -65,7 +65,7 @@ export class DribbbleProvider extends SocialAbstract implements SocialProvider {
           grant_type: 'refresh_token',
           refresh_token: refreshToken,
           scope: `${this.scopes.join(',')}`,
-          redirect_uri: `${process.env.FRONTEND_URL}/integrations/social/pinterest`,
+          redirect_uri: `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/pinterest`,
         }),
       })
     ).json();
@@ -115,7 +115,7 @@ export class DribbbleProvider extends SocialAbstract implements SocialProvider {
       url: `https://dribbble.com/oauth/authorize?client_id=${
         process.env.DRIBBBLE_CLIENT_ID
       }&redirect_uri=${encodeURIComponent(
-        `${process.env.FRONTEND_URL}/integrations/social/dribbble`
+        `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/dribbble`
       )}&response_type=code&scope=${this.scopes.join('+')}&state=${state}`,
       codeVerifier: makeSecureId(10),
       state,
@@ -129,7 +129,7 @@ export class DribbbleProvider extends SocialAbstract implements SocialProvider {
   }) {
     const { access_token, scope } = await (
       await this.fetch(
-        `https://dribbble.com/oauth/token?client_id=${process.env.DRIBBBLE_CLIENT_ID}&client_secret=${process.env.DRIBBBLE_CLIENT_SECRET}&code=${params.code}&redirect_uri=${process.env.FRONTEND_URL}/integrations/social/dribbble`,
+        `https://dribbble.com/oauth/token?client_id=${process.env.DRIBBBLE_CLIENT_ID}&client_secret=${process.env.DRIBBBLE_CLIENT_SECRET}&code=${params.code}&redirect_uri=${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/dribbble`,
         {
           method: 'POST',
         }

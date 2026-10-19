@@ -29,7 +29,7 @@ const clientAndYoutube = () => {
   const client = new google.auth.OAuth2({
     clientId: process.env.YOUTUBE_CLIENT_ID,
     clientSecret: process.env.YOUTUBE_CLIENT_SECRET,
-    redirectUri: `${process.env.FRONTEND_URL}/integrations/social/youtube`,
+    redirectUri: `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/youtube`,
   });
 
   const youtube = (newClient: OAuth2Client) =>
@@ -266,7 +266,7 @@ export class YoutubeProvider extends SocialAbstract implements SocialProvider {
     }`;
 
     if (text.includes('invalid_rapt')) {
-      return `because your organization's Google Workspace session policy invalidated its access. Ask your Google Workspace admin to mark Postiz as a trusted app and turn on "Exempt trusted apps" (https://support.google.com/a/answer/9368756) to prevent this from happening again`;
+      return `because your organization's Google Workspace session policy invalidated its access. Ask your Google Workspace admin to mark NUMOTEQ Publisher as a trusted app and turn on "Exempt trusted apps" (https://support.google.com/a/answer/9368756) to prevent this from happening again`;
     }
 
     return undefined;
@@ -303,7 +303,7 @@ export class YoutubeProvider extends SocialAbstract implements SocialProvider {
         access_type: 'offline',
         prompt: 'consent',
         state,
-        redirect_uri: `${process.env.FRONTEND_URL}/integrations/social/youtube`,
+        redirect_uri: `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/youtube`,
         scope: this.scopes.slice(0),
       }),
       codeVerifier: makeSecureId(11),

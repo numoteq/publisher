@@ -72,7 +72,7 @@ export class KickProvider extends SocialAbstract implements SocialProvider {
     const state = makeSecureId(32);
     const { codeVerifier, codeChallenge } = this.generatePKCE();
 
-    const redirectUri = `${process.env.FRONTEND_URL}/integrations/social/kick`;
+    const redirectUri = `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/kick`;
 
     const url =
       `https://id.kick.com/oauth/authorize` +
@@ -96,7 +96,7 @@ export class KickProvider extends SocialAbstract implements SocialProvider {
     codeVerifier: string;
     refresh?: string;
   }) {
-    const redirectUri = `${process.env.FRONTEND_URL}/integrations/social/kick${
+    const redirectUri = `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/kick${
       params.refresh ? `?refresh=${params.refresh}` : ''
     }`;
 

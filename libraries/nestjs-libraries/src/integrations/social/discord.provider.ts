@@ -66,7 +66,7 @@ export class DiscordProvider extends SocialAbstract implements SocialProvider {
       url: `https://discord.com/oauth2/authorize?client_id=${
         process.env.DISCORD_CLIENT_ID
       }&permissions=377957124096&response_type=code&redirect_uri=${encodeURIComponent(
-        `${process.env.FRONTEND_URL}/integrations/social/discord`
+        `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/discord`
       )}&integration_type=0&scope=bot+identify+guilds&state=${state}`,
       codeVerifier: makeSecureId(10),
       state,
@@ -84,7 +84,7 @@ export class DiscordProvider extends SocialAbstract implements SocialProvider {
         body: new URLSearchParams({
           code: params.code,
           grant_type: 'authorization_code',
-          redirect_uri: `${process.env.FRONTEND_URL}/integrations/social/discord`,
+          redirect_uri: `${(process.env.OAUTH_REDIRECT_BASE_URL || process.env.FRONTEND_URL)}/integrations/social/discord`,
         }),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
