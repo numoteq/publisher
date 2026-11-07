@@ -5,6 +5,7 @@ NUMOTEQ Publisher is NUMOTEQ's social media scheduling service, built on [Postiz
 Changes against upstream:
 
 - NUMOTEQ branding (logos, favicon, product name in UI texts, sign-in page).
+- Sign-in and registration pages link to the NUMOTEQ Terms of Service and Privacy Policy instead of Postiz's. TikTok app review requires both links on the sign-in page.
 - `OAUTH_REDIRECT_BASE_URL`: base URL for social OAuth redirect URIs, defaults to `FRONTEND_URL`. Lets the app move to a new domain while the redirect URIs registered with each network keep the old one. TikTok always uses `FRONTEND_URL`.
 
 The image is built by `.github/workflows/build.yml` and published as `ghcr.io/numoteq/publisher`.

@@ -19,6 +19,20 @@ export default async function AuthLayout({
           <div className="w-full max-w-[440px] mx-auto justify-center gap-[20px] h-full flex flex-col text-white">
             <LogoTextComponent />
             <div className="flex">{children}</div>
+            <div className="flex justify-center gap-[16px] text-[12px] text-[#A3A3A3]">
+              <a
+                href="https://www.numoteq.com/en/terms-of-service"
+                className="underline"
+              >
+                Terms of Service
+              </a>
+              <a
+                href="https://www.numoteq.com/en/privacy-policy"
+                className="underline"
+              >
+                Privacy Policy
+              </a>
+            </div>
           </div>
         </div>
         <div className="flex-1 hidden lg:flex flex-col items-center justify-center gap-[16px] text-center px-[40px]">
