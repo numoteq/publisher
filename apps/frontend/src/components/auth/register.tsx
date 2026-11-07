@@ -230,7 +230,8 @@ export function RegisterAfter({
                 <a
                   href={`https://www.numoteq.com/en/terms-of-service`}
                   className="underline hover:font-bold"
-                  rel="nofollow"
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
                 >
                   {t('terms_of_service', 'Terms of Service')}
                 </a>
@@ -238,8 +239,9 @@ export function RegisterAfter({
                 {t('and', 'and')}&nbsp;
                 <a
                   href={`https://www.numoteq.com/en/privacy-policy`}
-                  rel="nofollow"
+                  rel="noopener noreferrer nofollow"
                   className="underline hover:font-bold"
+                  target="_blank"
                 >
                   {t('privacy_policy', 'Privacy Policy')}
                 </a>

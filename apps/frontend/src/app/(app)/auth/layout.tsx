@@ -22,12 +22,16 @@ export default async function AuthLayout({
             <div className="flex justify-center gap-[16px] text-[12px] text-[#A3A3A3]">
               <a
                 href="https://www.numoteq.com/en/terms-of-service"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline"
               >
                 Terms of Service
               </a>
               <a
                 href="https://www.numoteq.com/en/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="underline"
               >
                 Privacy Policy
